@@ -30,6 +30,22 @@
         </td>
       </ng-container>
 
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>
+          <button mat-icon-button color="primary" aria-label="Add course" (click)="onAdd()">
+            <mat-icon >add</mat-icon>
+          </button>
+        </mat-header-cell>
+
+        <mat-cell *matCellDef="let element">
+          <mat-icon color="primary" aria-label="Edit course" (click)="onEdit()">edit</mat-icon>
+
+          <mat-icon color="warn" aria-label="Delete course" (click)="onDelete()">delete</mat-icon>
+        </mat-cell>
+
+      </ng-container>
+
       <!-- Weight Column -->
       <ng-container matColumnDef="weight">
         <th mat-header-cell *matHeaderCellDef> Weight </th>
