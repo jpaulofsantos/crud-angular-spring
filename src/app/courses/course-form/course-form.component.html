@@ -1,8 +1,8 @@
 
 <mat-card>
-  <mat-toolbar color="primary">Detalhes do Curso</mat-toolbar>
+  <mat-toolbar color="primary">Cadastrar novo Curso</mat-toolbar>
     <mat-card-content>
-      <form [formGroup]="form"> <!-- "form" -> Referência à variável em course-component.ts irá mapear os campos para os campos setados no construtor -->
+      <form [formGroup]="form" class="min-width"> <!-- "form" -> Referência à variável em course-component.ts irá mapear os campos para os campos setados no construtor -->
         <mat-form-field class="full-width">
           <input matInput placeholder="Nome" formControlName="name">
         </mat-form-field>
