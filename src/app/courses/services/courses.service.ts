@@ -11,6 +11,7 @@ export class CoursesService {
 
   //private readonly API = '/assets/courses.json';
   private readonly API = 'api/courses';
+  private readonly API_TEST = 'api/courses/id';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -27,4 +28,9 @@ export class CoursesService {
     console.log(record);
     return this.httpClient.post<Course>(this.API, record).pipe(first());
   }
+
+  findById(id: string) {
+    return this.httpClient.get<Course>(`${this.API}/${id}`);
+  }
+
 }
