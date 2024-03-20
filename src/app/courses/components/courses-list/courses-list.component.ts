@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Course } from '../model/course';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Course } from '../../model/course';
 
 @Component({
   selector: 'app-courses-list',
@@ -10,15 +9,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class CoursesListComponent {
 
   @Input() courses: Course[] = [];
+  @Output() add = new EventEmitter(false);
+
   readonly displayedColumns = ['_id', 'name', 'category', 'actions']
 
-  constructor(public router: Router,
-    private route: ActivatedRoute) {
+  constructor() {
     }
 
     onAdd() {
-      console.log('onAdd');
-      this.router.navigate(['new'], {relativeTo: this.route}); //pega a rota que estamos /courses e agrega ao /new
+      this.add.emit(true);
     }
 
     onEdit() {

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Course } from './../model/course';
 import { Injectable } from '@angular/core';
 import { delay, first, tap } from 'rxjs';
-import { CourseFormComponent } from '../course-form/course-form.component';
+import { CourseFormComponent } from '../containers/course-form/course-form.component';
 
 @Injectable({
   providedIn: 'root'
