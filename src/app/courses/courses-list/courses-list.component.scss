@@ -1,0 +1,17 @@
+.mat-table {
+  overflow: auto;
+  max-height: 600px;
+}
+
+.action-column {
+  flex: 0 0 130px;
+}
+
+.action-column-header {
+  margin: 0 auto;
+}
+
+mat-header-cell {
+  font-size: large;
+  color: "primary";
+}

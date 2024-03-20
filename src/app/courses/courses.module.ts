@@ -15,12 +15,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { CoursesListComponent } from './courses-list/courses-list.component';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
   declarations: [
     CoursesComponent,
-    CourseFormComponent
+    CourseFormComponent,
+    CoursesListComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +38,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatButtonModule
   ]
 })
 export class CoursesModule { }
