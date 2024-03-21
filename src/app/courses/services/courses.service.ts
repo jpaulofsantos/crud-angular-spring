@@ -11,7 +11,6 @@ export class CoursesService {
 
   //private readonly API = '/assets/courses.json';
   private readonly API = 'api/courses';
-  private readonly API_TEST = 'api/courses/id';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -25,12 +24,24 @@ export class CoursesService {
   }
 
   save(record: Partial<Course>) {
-    console.log(record);
-    return this.httpClient.post<Course>(this.API, record).pipe(first());
+    if (record._id) {
+      console.log('update')
+      return this.update(record);
+    }
+    console.log('create')
+    return this.create(record);
   }
 
   findById(id: string) {
     return this.httpClient.get<Course>(`${this.API}/${id}`);
+  }
+
+  private create(record: Partial<Course>) {
+    return this.httpClient.post<Course>(this.API, record).pipe(first());
+  }
+
+  private update(record: Partial<Course>) {
+    return this.httpClient.put<Course>(`${this.API}/${record._id}`, record).pipe(first());
   }
 
 }

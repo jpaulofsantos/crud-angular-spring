@@ -14,6 +14,7 @@ import { Course } from '../../model/course';
 export class CourseFormComponent {
 
   form = this.formBuilder.group({
+    _id: [''],
     name: [''],
     category: ['']
   });
@@ -26,6 +27,12 @@ export class CourseFormComponent {
 
       const course: Course = this.route.snapshot.data['course'];
       console.log(course);
+
+      this.form.setValue({
+        _id: course._id,
+        name: course.name,
+        category: course.category
+      })
 
   }
 

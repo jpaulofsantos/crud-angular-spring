@@ -42,7 +42,7 @@ export class CoursesComponent {
   }
 
   onEdit(course: Course) {
-    this.router.navigate(['edit', course._id], {relativeTo: this.route});
+    this.router.navigate(['edit', course._id], {relativeTo: this.route}); //pega a rota que estamos /courses e agrega ao /edit + id
   }
 
   onDelete() {
