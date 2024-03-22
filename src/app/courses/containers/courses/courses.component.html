@@ -9,7 +9,8 @@
     <app-courses-list *ngIf="courses$ | async as courses; else loading"
     [courses]="courses"
     (add)="onAdd()"
-    (edit)="onEdit($event)"> <!-- Verifica o conteúdo do retorno do observable, joga na variável courses para mostrar o loading ou a lista -->
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)"> <!-- Verifica o conteúdo do retorno do observable, joga na variável courses para mostrar o loading ou a lista -->
 
     </app-courses-list>
     <ng-template #loading>

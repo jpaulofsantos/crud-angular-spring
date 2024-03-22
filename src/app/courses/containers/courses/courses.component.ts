@@ -5,6 +5,7 @@ import { Observable, catchError, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../../shared/components/error-dialog/error-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-courses',
@@ -13,21 +14,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CoursesComponent {
 
-  courses$: Observable<Course[]>;
+  courses$: Observable<Course[]> | null = null;
 
   constructor(
     private courseService: CoursesService,
     public dialog: MatDialog,
     public router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
     ) {
-    this.courses$ = this.courseService.list()
-    .pipe(
-      catchError(error => {
-        this.onError('Erro ao carregar lista de cursos')
-          return of([])
-        })
-      );
+    this.refresh();
   }
 
   onError(errorMessage: string) {
@@ -45,7 +41,23 @@ export class CoursesComponent {
     this.router.navigate(['edit', course._id], {relativeTo: this.route}); //pega a rota que estamos /courses e agrega ao /edit + id
   }
 
-  onDelete() {
-    console.log('onDelete');
+  onDelete(course: Course) {
+    this.courseService.delete(course._id).subscribe(
+      () => {
+        this.snackBar.open('Curso removido com sucesso', 'X', {duration: 1000, verticalPosition: 'top', horizontalPosition: 'center'});
+        this.refresh();
+      },
+      error => this.onError('Erro ao tentar remover curso')
+    );
+  }
+
+  refresh() {
+    this.courses$ = this.courseService.list()
+    .pipe(
+      catchError(error => {
+        this.onError('Erro ao carregar lista de cursos')
+          return of([])
+        })
+      );
   }
 }
