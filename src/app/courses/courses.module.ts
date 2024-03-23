@@ -19,6 +19,7 @@ import { CoursesListComponent } from './components/courses-list/courses-list.com
 import {MatButtonModule} from '@angular/material/button';
 
 
+
 @NgModule({
   declarations: [
     CoursesComponent,
